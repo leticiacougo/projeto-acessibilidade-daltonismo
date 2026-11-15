@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acessibilidade Visual • Teste de Daltonismo (Ishihara)</title>
+  <meta name="description" content="Plataforma web para identificação e adaptação de gráficos para daltônicos através do teste de Ishihara. Informações sobre Deuteranopia, Protanopia, Tritanopia e Acromatopsia.">
+  <meta name="theme-color" content="#448a9b">
+
+  <!-- Google Fonts: Nunito & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos da Aplicação Web -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       TELA 1: HOME PAGE (Website para Computador)
+       Header/Title: "Torne gráficos acessíveis para daltônicos"
+       Button 1: "Tipo de Daltonismo" -> vai para Tela 2
+       Button 2: "Adaptação de gráficos" -> inativo
+       ==================================================================== -->
+  <section id="screen-home" class="screen active" aria-labelledby="home-main-title">
+    <!-- Barra Superior da Home (Website) -->
+    <header class="website-navbar home-navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+          <span class="brand-name">Projeto Acessibilidade</span>
+        </div>
+        <div class="navbar-right-tag">
+          <span>Triagem & Adaptação Visual</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ondas Fluidas de Fundo em SVG (Fiel à estética da Imagem 1) -->
+    <div class="home-waves-bg" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="topWaveDesktop" x1="0%" y1="0%" x2="100%" y2="80%">
+            <stop offset="0%" stop-color="#bae0e3" stop-opacity="0.85" />
+            <stop offset="50%" stop-color="#d5eaeb" stop-opacity="0.7" />
+            <stop offset="100%" stop-color="#eaf4f3" stop-opacity="0.3" />
+          </linearGradient>
+          <linearGradient id="bottomWaveDesktop1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e0eeee" stop-opacity="0.75" />
+            <stop offset="100%" stop-color="#cae5e6" stop-opacity="0.9" />
+          </linearGradient>
+          <linearGradient id="bottomWaveDesktop2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d4ebed" stop-opacity="0.65" />
+            <stop offset="100%" stop-color="#e5f2f1" stop-opacity="0.4" />
+          </linearGradient>
+        </defs>
+
+        <!-- Ondas Superiores -->
+        <path d="M0,0 L1440,0 L1440,240 C1200,280 960,220 720,250 C480,280 240,230 0,260 Z" fill="url(#topWaveDesktop)" />
+        <path d="M0,240 C320,210 640,280 960,230 C1200,210 1340,225 1440,235 L1440,330 C1280,350 960,310 640,340 C320,370 120,330 0,350 Z" fill="#f0f7f7" opacity="0.65" />
+
+        <!-- Ondas Inferiores -->
+        <path d="M0,720 C240,690 540,740 840,710 C1140,680 1320,700 1440,720 L1440,900 L0,900 Z" fill="url(#bottomWaveDesktop2)" />
+        <path d="M0,780 C300,750 620,800 940,770 C1220,740 1360,760 1440,780 L1440,900 L0,900 Z" fill="url(#bottomWaveDesktop1)" />
+      </svg>
+    </div>
+
+    <!-- Conteúdo Principal da Home -->
+    <main class="home-main-content">
+      <div class="home-hero-card">
+        <h1 id="home-main-title" class="home-title">
+          Torne gráficos<br>acessíveis para<br>daltônicos
+        </h1>
+
+        <p class="home-subtitle">
+          Descubra e compreenda os tipos de daltonismo através do teste clínico de Ishihara e prepare seus projetos para inclusão visual.
+        </p>
+
+        <!-- Botões de Ação Principais da Home -->
+        <div class="home-buttons-group">
+          <!-- Botão 1: Tipo de Daltonismo -->
+          <button type="button" id="btn-goto-types" class="btn-main-teal" aria-label="Ir para a tela de Tipos de Daltonismo">
+            Tipo de Daltonismo
+          </button>
+
+          <!-- Botão 2: Adaptação de gráficos -->
+          <button type="button" id="btn-adaptation" class="btn-main-outline" aria-label="Acessar Adaptação de gráficos e repositório acessível" tabindex="0">
+            Adaptação de gráficos
+          </button>
+        </div>
+
+        <!-- Destaques de Acessibilidade -->
+        <div class="home-highlights">
+          <div class="highlight-item">
+            <span class="highlight-dot"></span>
+            <span>4 Tipos Mapeados</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-dot"></span>
+            <span>Simulação Visual Integrada</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+
+  <!-- ====================================================================
+       TELA 2: SELECIONAR / TIPOS DE DALTONISMO (Website)
+       Header com botão Voltar e título "Selecionar"
+       Cards: Deuteranopia (Verde), Protanopia (Vermelho), Tritanopia (Azul), Acromatopsia (Total)
+       Seção "Não sei:" com botão "INICIAR TESTE DE DALTONISMO"
+       ==================================================================== -->
+  <section id="screen-types" class="screen" aria-labelledby="header-title-types">
+    <!-- Header Sólido Teal (Estilo da Imagem 2 adaptado para Web) -->
+    <header class="website-header-teal">
+      <div class="header-teal-container">
+        <!-- Botão Voltar para a Home -->
+        <button type="button" id="back-btn-types" class="btn-back-header" aria-label="Voltar para a página inicial">
+          <svg viewBox="0 0 24 24" class="back-icon" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="back-text">Voltar ao Início</span>
+        </button>
+
+        <!-- Título Centralizado -->
+        <h2 id="header-title-types" class="header-teal-title">Selecionar</h2>
+
+        <!-- Atalho Início no lado direito -->
+        <button type="button" id="quick-home-from-types" class="btn-home-shortcut" title="Ir para o Início">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Conteúdo Centralizado da Página -->
+    <main class="page-body-container">
+      <div class="content-box">
+        <p class="section-instruction">
+          Selecione um tipo de daltonismo abaixo para consultar suas características completas ou faça o teste caso não saiba:
+        </p>
+
+        <!-- Lista de 4 Cartões (Fiel à Imagem 2) -->
+        <div class="types-cards-list" role="list">
+          <!-- Card 1: Deuteranopia -->
+          <div class="type-card" role="listitem" tabindex="0" data-type="deuteranopia" aria-label="Deuteranopia (Verde) - Clique para ver detalhes">
+            <div class="concentric-circle-icon circle-deuteranopia" aria-hidden="true">
+              <div class="concentric-inner-circle"></div>
+            </div>
+            <div class="type-card-name">Deuteranopia (Verde)</div>
+            <div class="type-card-arrow" aria-hidden="true">→</div>
+          </div>
+
+          <!-- Card 2: Protanopia -->
+          <div class="type-card" role="listitem" tabindex="0" data-type="protanopia" aria-label="Protanopia (Vermelho) - Clique para ver detalhes">
+            <div class="concentric-circle-icon circle-protanopia" aria-hidden="true">
+              <div class="concentric-inner-circle"></div>
+            </div>
+            <div class="type-card-name">Protanopia (Vermelho)</div>
+            <div class="type-card-arrow" aria-hidden="true">→</div>
+          </div>
+
+          <!-- Card 3: Tritanopia -->
+          <div class="type-card" role="listitem" tabindex="0" data-type="tritanopia" aria-label="Tritanopia (Azul) - Clique para ver detalhes">
+            <div class="concentric-circle-icon circle-tritanopia" aria-hidden="true">
+              <div class="concentric-inner-circle"></div>
+            </div>
+            <div class="type-card-name">Tritanopia (Azul)</div>
+            <div class="type-card-arrow" aria-hidden="true">→</div>
+          </div>
+
+          <!-- Card 4: Acromatopsia -->
+          <div class="type-card" role="listitem" tabindex="0" data-type="acromatopsia" aria-label="Acromatopsia (Total) - Clique para ver detalhes">
+            <div class="concentric-circle-icon circle-acromatopsia" aria-hidden="true">
+              <div class="concentric-inner-circle"></div>
+            </div>
+            <div class="type-card-name">Acromatopsia (Total)</div>
+            <div class="type-card-arrow" aria-hidden="true">→</div>
+          </div>
+        </div>
+
+        <!-- Seção "Não sei:" com Botão CTA Primário (Imagem 2) -->
+        <div class="entry-unknown-section">
+          <div class="unknown-label">Não sei:</div>
+          <button type="button" id="btn-start-test" class="btn-start-test" aria-label="Iniciar Teste de Daltonismo">
+            INICIAR TESTE DE DALTONISMO
+          </button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+
+  <!-- ====================================================================
+       TELA 3: TESTE DE DALTONISMO (ISHIHARA) (Website)
+       Header com seta Voltar e título "Teste Daltonismo"
+       Pergunta: "Qual número você vê na imagem abaixo?"
+       Placa de Ishihara redonda
+       Botões lado a lado + "Não vejo número"
+       ==================================================================== -->
+  <section id="screen-test" class="screen" aria-labelledby="header-title-test">
+    <header class="website-header-teal">
+      <div class="header-teal-container">
+        <button type="button" id="back-btn-test" class="btn-back-header" aria-label="Voltar para a seleção de tipos">
+          <svg viewBox="0 0 24 24" class="back-icon" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="back-text">Voltar</span>
+        </button>
+
+        <h2 id="header-title-test" class="header-teal-title">Teste Daltonismo</h2>
+
+        <button type="button" id="cancel-test-btn" class="btn-home-shortcut" title="Cancelar Teste e voltar ao Início">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>Cancelar</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-body-container">
+      <div class="content-box test-box">
+        <!-- Indicador de Progresso do Teste -->
+        <div class="test-progress-bar-wrapper">
+          <div class="test-progress-header">
+            <span id="test-step-indicator" class="test-step-text">Placa 1 de 5</span>
+            <span class="test-step-tip">Selecione o número que distinguir primeiro</span>
+          </div>
+          <div class="progress-track">
+            <div id="test-progress-fill" class="progress-fill" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Pergunta Central (Fiel à Imagem 3) -->
+        <h3 id="test-question" class="test-question">
+          Qual número você vê na imagem abaixo?
+        </h3>
+
+        <!-- Placa de Ishihara Redonda -->
+        <div class="plate-wrapper">
+          <img id="test-plate-image" class="plate-img" src="assets/plate_5.png" alt="Placa de teste de Ishihara mostrando número">
+        </div>
+
+        <!-- Botões de Resposta -->
+        <div class="test-answers-container">
+          <!-- Linha com opções primárias lado a lado (ex: 5 e 9 na Imagem 3) -->
+          <div id="primary-options-row" class="primary-options-row">
+            <button type="button" class="btn-number-choice">5</button>
+            <button type="button" class="btn-number-choice">9</button>
+          </div>
+
+          <!-- Botão "Não vejo número" centralizado abaixo (Imagem 3) -->
+          <button type="button" id="btn-none-option" class="btn-none-choice">
+            Não vejo número
+          </button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+
+  <!-- ====================================================================
+       TELA 4: RESULTADO & DETALHES (Website)
+       Header com seta Voltar e título "Teste Daltonismo"
+       Título: "Tipo Identificado:"
+       Cartão do tipo com círculo concêntrico
+       Descrição e "Principais características:" em bullet points
+       ==================================================================== -->
+  <section id="screen-result" class="screen" aria-labelledby="header-title-result">
+    <header class="website-header-teal">
+      <div class="header-teal-container">
+        <button type="button" id="back-btn-result" class="btn-back-header" aria-label="Voltar para a tela anterior">
+          <svg viewBox="0 0 24 24" class="back-icon" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="back-text">Voltar</span>
+        </button>
+
+        <h2 id="header-title-result" class="header-teal-title">Teste Daltonismo</h2>
+
+        <button type="button" id="quick-home-from-result" class="btn-home-shortcut" title="Voltar ao Início">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-body-container">
+      <div class="content-box result-box">
+        <!-- Subtítulo "Tipo Identificado:" (Fiel à Imagem 4) -->
+        <h3 id="result-title" class="result-heading">Tipo Identificado:</h3>
+
+        <!-- Cartão do Tipo Identificado (Fiel à Imagem 4) -->
+        <div id="result-card-container" class="result-card-slot">
+          <!-- Injetado via JS -->
+        </div>
+
+        <!-- Parágrafo de Explicação Clínico-Visual -->
+        <p id="result-summary" class="result-paragraph"></p>
+
+        <!-- Subtítulo Características -->
+        <h4 class="result-subheading">Principais características:</h4>
+
+        <!-- Lista em Bullet Points (Fiel à Imagem 4) -->
+        <ul id="result-characteristics" class="result-bullet-list">
+          <!-- Injetado via JS -->
+        </ul>
+
+        <!-- Simulador Visual Interativo -->
+        <div id="vision-simulator-container" class="simulator-wrapper"></div>
+
+        <!-- Botões de Ação na Base da Página -->
+        <div class="result-action-buttons">
+          <button type="button" id="btn-retake-test" class="btn-action-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Refazer Teste</span>
+          </button>
+          <button type="button" id="btn-back-to-types" class="btn-action-outline">
+            Ver Outros Tipos
+          </button>
+          <button type="button" id="btn-back-to-home" class="btn-action-outline">
+            Voltar ao Início
+          </button>
+        </div>
+      </div>
+    </main>
+  </section>
+ 
+  <!-- ====================================================================
+       TELA 5: ADAPTAÇÃO DE CORES & GALERIA DE GRÁFICOS
+       Header com Voltar e Início
+       Abas: Adaptador Visual & Galeria de Gráficos Adaptados
+       Recursos de contraste, correção de daltonismo, nitidez e repositório persistente
+       ==================================================================== -->
+  <section id="screen-adaptation" class="screen" aria-labelledby="header-title-adaptation">
+    <!-- Header Sólido Teal Padrão da Aplicação -->
+    <header class="website-header-teal">
+      <div class="header-teal-container">
+        <!-- Botão Voltar para a Home -->
+        <button type="button" id="back-btn-adaptation" class="btn-back-header" aria-label="Voltar para a página inicial">
+          <svg viewBox="0 0 24 24" class="back-icon" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="back-text">Voltar ao Início</span>
+        </button>
+
+        <!-- Título Centralizado -->
+        <h2 id="header-title-adaptation" class="header-teal-title">Adaptação de Gráficos</h2>
+
+        <!-- Atalho Início no lado direito -->
+        <button type="button" id="quick-home-from-adaptation" class="btn-home-shortcut" title="Ir para o Início">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Barra de Abas / Navegação Superior da Ferramenta -->
+    <nav class="adaptation-tabs-bar" aria-label="Navegação da ferramenta de gráficos">
+      <div class="adaptation-tabs-container">
+        <button type="button" id="tab-btn-workbench" class="adaptation-tab-btn active" aria-selected="true" role="tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+          <span>Adaptador Interativo</span>
+        </button>
+        <button type="button" id="tab-btn-gallery" class="adaptation-tab-btn" aria-selected="false" role="tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span>Galeria de Gráficos Adaptados</span>
+          <span id="gallery-counter-badge" class="tab-badge" title="Gráficos salvos">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="page-body-container page-body-wide">
+
+      <!-- ================================================================
+           ABA 1: WORKBENCH / ADAPTADOR INTERATIVO
+           ================================================================ -->
+      <div id="view-workbench" class="tool-view active">
+        
+        <!-- Faixa de Importação do Gráfico -->
+        <div class="import-panel-card">
+          <div class="import-panel-grid">
+            <!-- Opção 1: Arquivo do Dispositivo -->
+            <div class="dropzone-wrapper">
+              <input type="file" id="chart-file-input" accept="image/png, image/jpeg, image/jpg, image/webp, image/svg+xml" class="sr-only">
+              <label for="chart-file-input" id="chart-dropzone" class="chart-dropzone" tabindex="0" role="button" aria-label="Carregar imagem de gráfico do computador">
+                <div class="dropzone-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <div class="dropzone-text">
+                  <strong>Importar Arquivo do Dispositivo</strong>
+                  <span>Arraste ou clique para selecionar imagem (PNG, JPG, WebP)</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Divisor Visual -->
+            <div class="import-options-divider" aria-hidden="true">
+              <span>OU</span>
+            </div>
+
+            <!-- Opção 2: Tirar Foto ao Vivo com a Câmera (Gráfico Físico) -->
+            <div class="camera-import-wrapper">
+              <button type="button" id="btn-open-camera" class="btn-camera-import" aria-label="Tirar foto ao vivo de gráfico físico com a câmera do dispositivo">
+                <div class="camera-import-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="camera-import-text">
+                  <strong>Tirar Foto de Gráfico Físico</strong>
+                  <span>Fotografe gráficos em papel ou relatórios impressos</span>
+                </div>
+                <span class="badge-status badge-active" style="margin-left: auto;">Câmera</span>
+              </button>
+              <input type="file" id="camera-fallback-input" accept="image/*" capture="environment" class="sr-only">
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Principal do Adaptador: Stage (Esquerda) + Controles (Direita) -->
+        <div class="workbench-grid">
+          
+          <!-- Coluna da Esquerda: Estágio do Gráfico e Comparação -->
+          <div class="stage-column">
+            <div class="stage-card">
+              <!-- Barra de Ferramentas Superior do Estágio -->
+              <div class="stage-toolbar">
+                <!-- Seletor de Modo de Visualização -->
+                <div class="view-mode-buttons" role="group" aria-label="Modo de visualização">
+                  <button type="button" id="btn-mode-split" class="btn-tool-mode active" title="Comparação com divisor móvel antes e depois">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"></line><rect x="3" y="2" width="18" height="20" rx="2"></rect></svg>
+                    <span>Divisão (Antes/Depois)</span>
+                  </button>
+                  <button type="button" id="btn-mode-side" class="btn-tool-mode" title="Visualização lado a lado">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="9" height="18" rx="1"></rect><rect x="13" y="3" width="9" height="18" rx="1"></rect></svg>
+                    <span>Lado a Lado</span>
+                  </button>
+                  <button type="button" id="btn-mode-adapted" class="btn-tool-mode" title="Exibir apenas imagem adaptada">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="12" cy="12" r="4"></circle></svg>
+                    <span>Apenas Adaptado</span>
+                  </button>
+                </div>
+
+                <!-- Botão de Ação Rápida: Audiodescrição com Voz (IA) -->
+                <button type="button" id="btn-quick-audio-desc" class="btn-tool-mode btn-tool-audio" title="Ouvir audiodescrição em voz do gráfico ativo" aria-label="Ouvir audiodescrição do gráfico com síntese de voz">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" fill="none" stroke="currentColor" stroke-width="2"></path>
+                  </svg>
+                  <span>Ouvir Audiodescrição IA</span>
+                </button>
+              </div>
+
+              <!-- Viewport Interativo: Divisor Antes / Depois (Split Slider) -->
+              <div id="split-viewport" class="viewport-container split-active" tabindex="0" aria-label="Comparação interativa do gráfico original e adaptado">
+                <!-- Estado Vazio (quando nenhum gráfico foi importado) -->
+                <div id="stage-empty-placeholder" class="stage-empty-placeholder" style="display: none;">
+                  <div class="stage-empty-icon">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                  </div>
+                  <h4 class="stage-empty-title">Nenhum gráfico carregado</h4>
+                  <p class="stage-empty-desc">Importe uma imagem do seu dispositivo ou use a câmera para fotografar um gráfico físico impresso.</p>
+                  <div class="stage-empty-actions">
+                    <label for="chart-file-input" class="btn-action-teal btn-stage-cta" tabindex="0" role="button">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      <span>Selecionar Arquivo</span>
+                    </label>
+                    <button type="button" id="btn-stage-camera" class="btn-action-primary btn-action-camera btn-stage-cta" aria-label="Fotografar gráfico físico com a câmera">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                      </svg>
+                      <span>Tirar Foto com a Câmera</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Imagem Adaptada (Camada Base) -->
+                <div class="viewport-layer layer-adapted">
+                  <img id="img-adapted-preview" alt="Gráfico Adaptado para Acessibilidade" class="stage-img">
+                  <span class="view-tag tag-adapted">Adaptado</span>
+                </div>
+
+                <!-- Imagem Original (Camada Superior Cortada) -->
+                <div id="split-overlay" class="viewport-layer layer-original" style="clip-path: inset(0 50% 0 0); width: 100%;">
+                  <img id="img-original-preview" alt="Gráfico Original" class="stage-img">
+                  <span class="view-tag tag-original">Original</span>
+                </div>
+
+                <!-- Divisor Interativo Arrastável -->
+                <div id="split-handle" class="split-handle-bar" style="left: 50%;" aria-hidden="true">
+                  <div class="handle-line"></div>
+                  <div class="handle-knob">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41zM15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6 1.41 1.41z" transform="rotate(180 12 12)"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Viewport Alternativo: Lado a Lado -->
+              <div id="side-viewport" class="viewport-container-side" style="display: none;">
+                <div class="side-panel">
+                  <span class="side-badge">Original</span>
+                  <img id="side-img-original" alt="Gráfico Original" class="side-img">
+                </div>
+                <div class="side-panel">
+                  <span class="side-badge badge-adapted">Adaptado com Acessibilidade</span>
+                  <img id="side-img-adapted" alt="Gráfico Adaptado" class="side-img">
+                </div>
+              </div>
+
+              <!-- Rodapé de Métricas e Ganho de Acessibilidade -->
+              <div class="stage-footer-metrics">
+                <div class="metric-item">
+                  <span class="metric-label">Ganho de Contraste:</span>
+                  <span id="metric-contrast-gain" class="metric-val val-highlight">+35%</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                  <span class="metric-label">Legibilidade:</span>
+                  <span id="metric-readability" class="metric-val val-success">WCAG AAA (7.5:1)</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                  <span class="metric-label">Modo Ativo:</span>
+                  <span id="metric-active-mode" class="metric-val">Auto Inteligente</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                  <span class="metric-label">Dimensões:</span>
+                  <span id="metric-dimensions" class="metric-val">900 × 540 px</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slot para o Card de Audiodescrição Inteligente com Síntese de Voz (TTS) -->
+            <div id="chart-audio-describer-slot"></div>
+          </div>
+
+          <!-- Coluna da Direita: Painel de Controles & Presets -->
+          <div class="controls-column">
+            
+            <!-- Card de Presets Acessíveis de 1 Clique -->
+            <div class="control-card">
+              <h3 class="control-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Presets de Acessibilidade</span>
+              </h3>
+              <p class="control-card-desc">Selecione uma paleta otimizada para o perfil visual desejado:</p>
+
+              <div class="presets-buttons-grid">
+                <!-- Preset Auto -->
+                <button type="button" class="btn-preset active" data-preset="auto" title="Auto Inteligente: Otimização automática de contraste e nitidez" aria-label="Preset Auto Inteligente">
+                  <div class="preset-icon-badge badge-auto">✨</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Auto Inteligente</span>
+                    <span class="preset-sub">Contraste e nitidez</span>
+                  </div>
+                </button>
+
+                <!-- Preset Alto Contraste -->
+                <button type="button" class="btn-preset" data-preset="high-contrast" title="Alto Contraste: WCAG AAA reforçado para baixa visão" aria-label="Preset Alto Contraste">
+                  <div class="preset-icon-badge badge-contrast">🌓</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Alto Contraste</span>
+                    <span class="preset-sub">WCAG AAA Reforçado</span>
+                  </div>
+                </button>
+
+                <!-- Preset Deuteranopia -->
+                <button type="button" class="btn-preset" data-preset="deuteranopia" title="Deuteranopia: Paleta Okabe-Ito segura para daltonismo verde" aria-label="Preset Deuteranopia (Verde)">
+                  <div class="preset-icon-badge badge-deuter">🟢</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Deuteranopia (Verde)</span>
+                    <span class="preset-sub">Paleta Okabe-Ito segura</span>
+                  </div>
+                </button>
+
+                <!-- Preset Protanopia -->
+                <button type="button" class="btn-preset" data-preset="protanopia" title="Protanopia: Vermelho vivo & Âmbar diferenciáveis para daltonismo vermelho" aria-label="Preset Protanopia (Vermelho)">
+                  <div class="preset-icon-badge badge-protan">🔴</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Protanopia (Vermelho)</span>
+                    <span class="preset-sub">Vermelho vivo & Âmbar</span>
+                  </div>
+                </button>
+
+                <!-- Preset Tritanopia -->
+                <button type="button" class="btn-preset" data-preset="tritanopia" title="Tritanopia: Ciano & Magenta contrastantes para daltonismo azul" aria-label="Preset Tritanopia (Azul)">
+                  <div class="preset-icon-badge badge-tritan">🔵</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Tritanopia (Azul)</span>
+                    <span class="preset-sub">Ciano & Magenta</span>
+                  </div>
+                </button>
+
+                <!-- Preset Acromatopsia -->
+                <button type="button" class="btn-preset" data-preset="acromatopsia" title="Monocromático (Total): Escala de luminância para acromatopsia" aria-label="Preset Monocromático (Acromatopsia)">
+                  <div class="preset-icon-badge badge-acrom">⚪</div>
+                  <div class="preset-info">
+                    <span class="preset-name">Monocromático (Total)</span>
+                    <span class="preset-sub">Luminância por faixas</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card de Ajustes Manuais / Fine-Tuning -->
+            <div class="control-card">
+              <div class="control-card-header-flex">
+                <h3 class="control-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                  <span>Ajustes Finos de Imagem</span>
+                </h3>
+                <button type="button" id="btn-reset-sliders" class="btn-text-action" title="Restaurar valores do preset">Restaurar</button>
+              </div>
+
+              <!-- Slider Contraste -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="slider-contrast" class="slider-label">Contraste Dinâmico</label>
+                  <span id="label-val-contrast" class="slider-value">+22%</span>
+                </div>
+                <input type="range" id="slider-contrast" min="-50" max="100" value="22" class="range-slider">
+              </div>
+
+              <!-- Slider Brilho -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="slider-brightness" class="slider-label">Brilho Geral</label>
+                  <span id="label-val-brightness" class="slider-value">+5%</span>
+                </div>
+                <input type="range" id="slider-brightness" min="-50" max="50" value="5" class="range-slider">
+              </div>
+
+              <!-- Slider Nitidez / Eixos -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="slider-sharpness" class="slider-label">Nitidez de Eixos & Rótulos</label>
+                  <span id="label-val-sharpness" class="slider-value">35%</span>
+                </div>
+                <input type="range" id="slider-sharpness" min="0" max="100" value="35" class="range-slider">
+              </div>
+
+              <!-- Slider Saturação -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="slider-saturation" class="slider-label">Intensidade Cromática</label>
+                  <span id="label-val-saturation" class="slider-value">115%</span>
+                </div>
+                <input type="range" id="slider-saturation" min="0" max="200" value="115" class="range-slider">
+              </div>
+
+              <!-- Checkbox Normalizar Fundo Branco -->
+              <div class="checkbox-option">
+                <input type="checkbox" id="check-bg-clean" checked class="custom-checkbox">
+                <label for="check-bg-clean" class="checkbox-label">
+                  <span>Limpar fundo cinza/bege para branco puro (#fff)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Botões de Ação Principais -->
+            <div class="action-buttons-card">
+              <!-- Botão Primário: Salvar na Galeria -->
+              <button type="button" id="btn-save-to-gallery" class="btn-action-teal btn-action-full">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                <span>Salvar na Galeria de Adaptados</span>
+              </button>
+
+              <!-- Botão Secundário: Download Direto PNG -->
+              <button type="button" id="btn-download-adapted" class="btn-action-outline btn-action-full">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Baixar Gráfico Adaptado (PNG)</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================================================================
+           ABA 2: GALERIA / REPOSITÓRIO DE GRÁFICOS ADAPTADOS
+           ================================================================ -->
+      <div id="view-gallery" class="tool-view" style="display: none;">
+        
+        <!-- Barra de Ações & Filtros da Galeria -->
+        <div class="gallery-toolbar-card">
+          <div class="gallery-search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="gallery-search-input" placeholder="Buscar por título ou modo de adaptação..." class="gallery-search-field">
+          </div>
+
+          <!-- Filtros por Categoria de Daltonismo -->
+          <div class="gallery-filter-chips" role="group" aria-label="Filtrar por tipo de adaptação">
+            <button type="button" class="filter-chip active" data-filter="all">Todos</button>
+            <button type="button" class="filter-chip" data-filter="auto">Auto Inteligente</button>
+            <button type="button" class="filter-chip" data-filter="high-contrast">Alto Contraste</button>
+            <button type="button" class="filter-chip" data-filter="deuteranopia">Deuteranopia</button>
+            <button type="button" class="filter-chip" data-filter="protanopia">Protanopia</button>
+            <button type="button" class="filter-chip" data-filter="tritanopia">Tritanopia</button>
+            <button type="button" class="filter-chip" data-filter="acromatopsia">Monocromático</button>
+          </div>
+
+          <!-- Ações Extras da Galeria -->
+          <div class="gallery-actions-right">
+            <button type="button" id="btn-gallery-new-chart" class="btn-gallery-action" title="Ir para o Adaptador para adicionar novo gráfico">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Adaptar Novo</span>
+            </button>
+            <button type="button" id="btn-gallery-clear-all" class="btn-gallery-action btn-danger-ghost" title="Limpar todos os gráficos da galeria">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Limpar Repositório</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Grade de Cartões de Gráficos Adaptados -->
+        <div id="gallery-cards-grid" class="gallery-cards-grid" role="list">
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+
+        <!-- Estado Vazio da Galeria -->
+        <div id="gallery-empty-state" class="gallery-empty-container" style="display: none;">
+          <div class="empty-icon-circle">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+          <h4 class="empty-title">Nenhum gráfico adaptado encontrado</h4>
+          <p class="empty-subtitle">Você ainda não salvou adaptações com este filtro ou seu repositório está vazio.</p>
+          <div class="empty-actions-row">
+            <button type="button" id="btn-empty-go-adapt" class="btn-action-primary">
+              Adaptar Gráfico Agora
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </section>
+
+  <!-- ====================================================================
+       MODAL 1: SALVAR GRÁFICO NA GALERIA
+       ==================================================================== -->
+  <div id="modal-save-chart" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-save-title">
+    <div class="modal-dialog-box">
+      <div class="modal-header">
+        <h3 id="modal-save-title" class="modal-title">Salvar Gráfico no Repositório</h3>
+        <button type="button" class="btn-close-modal" id="btn-close-save-modal" aria-label="Fechar janela">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-preview-thumb">
+          <img id="modal-save-thumb" alt="Miniatura do gráfico adaptado">
+        </div>
+        <div class="form-group">
+          <label for="input-save-title" class="form-label">Título do Gráfico / Descrição</label>
+          <input type="text" id="input-save-title" class="form-input" placeholder="Ex: Desempenho de Vendas Q4 - Deuteranopia">
+        </div>
+        <div class="modal-info-summary">
+          <div class="info-pill">
+            <span class="info-pill-label">Modo:</span>
+            <span id="modal-save-mode" class="info-pill-val">Auto Inteligente</span>
+          </div>
+          <div class="info-pill">
+            <span class="info-pill-label">Contraste:</span>
+            <span id="modal-save-contrast" class="info-pill-val">+35%</span>
+          </div>
+          <div class="info-pill">
+            <span class="info-pill-label">Padrão:</span>
+            <span id="modal-save-wcag" class="info-pill-val">WCAG AAA</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-save" class="btn-action-outline">Cancelar</button>
+        <button type="button" id="btn-confirm-save" class="btn-action-primary">Confirmar e Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 2: VISUALIZAÇÃO & COMPARAÇÃO EM ALTA RESOLUÇÃO
+       ==================================================================== -->
+  <div id="modal-preview-chart" class="modal-backdrop modal-backdrop-large" aria-hidden="true" role="dialog" aria-labelledby="modal-preview-title">
+    <div class="modal-dialog-large">
+      <div class="modal-header">
+        <div class="modal-header-meta">
+          <h3 id="modal-preview-title" class="modal-title">Visualização do Gráfico</h3>
+          <span id="modal-preview-badge" class="badge-status badge-active">Deuteranopia</span>
+          <span id="modal-preview-date" class="modal-subtitle-date">27/10/2026</span>
+        </div>
+        <button type="button" class="btn-close-modal" id="btn-close-preview-modal" aria-label="Fechar janela">×</button>
+      </div>
+      <div class="modal-body modal-body-preview">
+        <!-- Divisor Antes / Depois dentro do Modal -->
+        <div id="modal-split-viewport" class="viewport-container split-active">
+          <div class="viewport-layer layer-adapted">
+            <img id="modal-preview-img-adapted" alt="Gráfico Adaptado em Alta Resolução" class="stage-img">
+            <span class="view-tag tag-adapted">Adaptado</span>
+          </div>
+          <div id="modal-split-overlay" class="viewport-layer layer-original" style="clip-path: inset(0 50% 0 0); width: 100%;">
+            <img id="modal-preview-img-original" alt="Gráfico Original" class="stage-img">
+            <span class="view-tag tag-original">Original</span>
+          </div>
+          <div id="modal-split-handle" class="split-handle-bar" style="left: 50%;">
+            <div class="handle-line"></div>
+            <div class="handle-knob">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41zM15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6 1.41 1.41z" transform="rotate(180 12 12)"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer modal-footer-space">
+        <div class="modal-footer-left">
+          <button type="button" id="btn-modal-audio-desc" class="btn-action-outline btn-action-audio" title="Ouvir audiodescrição em voz deste gráfico salvo" aria-label="Ouvir audiodescrição com voz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <span id="modal-audio-btn-text">Ouvir Audiodescrição IA</span>
+          </button>
+        </div>
+        <div class="modal-footer-right">
+          <button type="button" id="btn-modal-reopen-workbench" class="btn-action-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Abrir no Adaptador</span>
+          </button>
+          <button type="button" id="btn-modal-download-png" class="btn-action-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Baixar Imagem PNG</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 3: CAPTURA DE FOTO AO VIVO VIA CÂMERA
+       Permite fotografar gráficos físicos impressos diretamente pelo dispositivo
+       ==================================================================== -->
+  <div id="modal-camera-capture" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-camera-title">
+    <div class="modal-dialog-large modal-camera-dialog">
+      <div class="modal-header">
+        <div class="modal-header-meta">
+          <div class="modal-icon-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3 id="modal-camera-title" class="modal-title">Fotografar Gráfico Físico</h3>
+            <span class="modal-subtitle-date">Posicione o gráfico impresso ou desenhado em frente à câmera</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close-modal" id="btn-close-camera-modal" aria-label="Fechar janela de câmera">×</button>
+      </div>
+
+      <div class="modal-body modal-body-camera">
+        <!-- Viewfinder da Câmera -->
+        <div class="camera-viewfinder-container" id="camera-viewfinder-box">
+          <!-- Vídeo da Câmera ao Vivo -->
+          <video id="camera-video-stream" class="camera-video" autoplay playsinline muted></video>
+
+          <!-- Canvas para processamento do snapshot em alta resolução -->
+          <canvas id="camera-capture-canvas" style="display: none;"></canvas>
+
+          <!-- Imagem Congelada (Preview da Foto Tirada) -->
+          <img id="camera-photo-preview" class="camera-photo-preview" style="display: none;" alt="Foto capturada do gráfico">
+
+          <!-- Moldura Guia de Enquadramento do Gráfico -->
+          <div class="camera-frame-guide" id="camera-frame-guide" aria-hidden="true">
+            <div class="guide-corner top-left"></div>
+            <div class="guide-corner top-right"></div>
+            <div class="guide-corner bottom-left"></div>
+            <div class="guide-corner bottom-right"></div>
+            <div class="guide-text">Alinhe o gráfico dentro desta área</div>
+          </div>
+
+          <!-- Mensagem / Estado de Erro ou Sem Permissão -->
+          <div id="camera-error-message" class="camera-status-overlay" style="display: none;">
+            <div class="camera-status-icon">⚠️</div>
+            <h4 id="camera-error-title" class="camera-status-title">Câmera indisponível</h4>
+            <p id="camera-error-desc" class="camera-status-desc">Não foi possível acessar a câmera do dispositivo. Verifique as permissões de acesso.</p>
+            <label for="camera-fallback-input" class="btn-action-primary" style="cursor: pointer; margin-top: 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <span>Usar Câmera Nativa / Arquivo</span>
+            </label>
+          </div>
+
+          <!-- Indicador de Inicialização / Loading -->
+          <div id="camera-loading-indicator" class="camera-status-overlay" style="display: flex;">
+            <div class="camera-spinner"></div>
+            <span class="camera-loading-text">Iniciando câmera do dispositivo...</span>
+          </div>
+
+          <!-- Dica Flutuante de Iluminação -->
+          <div class="camera-lighting-tip" id="camera-tip-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <span>Dica: Mantenha iluminação uniforme e evite reflexos fortes sobre o papel</span>
+          </div>
+        </div>
+
+        <!-- Barra de Controles da Câmera -->
+        <div class="camera-controls-bar">
+          <!-- Modo Ao Vivo: Botão Alternar Câmera & Disparo -->
+          <div id="camera-live-controls" class="camera-controls-group">
+            <button type="button" id="btn-camera-switch" class="btn-camera-tool" title="Alternar entre câmera traseira e frontal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0-4.418-3.582-8-8-8s-8 3.582-8 8c0 1.838.621 3.53 1.664 4.88L3 17h6v-6l-2.42 2.42C5.643 12.247 5 11.196 5 10c0-3.866 3.134-7 7-7s7 3.134 7 7-3.134 7-7 7c-1.39 0-2.684-.407-3.774-1.11L6.78 17.336C8.243 18.384 10.046 19 12 19c4.418 0 8-3.582 8-8z"></path>
+              </svg>
+              <span>Alternar Câmera</span>
+            </button>
+
+            <!-- Botão Central de Disparo (Shutter Button) -->
+            <button type="button" id="btn-camera-capture" class="btn-camera-shutter" aria-label="Fotografar gráfico">
+              <div class="shutter-inner-ring">
+                <div class="shutter-circle"></div>
+              </div>
+            </button>
+
+            <!-- Espaço equilibrado -->
+            <div style="width: 140px;" class="camera-tool-spacer"></div>
+          </div>
+
+          <!-- Modo Preview (Foto Tirada): Retake & Confirm -->
+          <div id="camera-preview-controls" class="camera-controls-group" style="display: none;">
+            <button type="button" id="btn-camera-retake" class="btn-action-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 4v6h6"></path><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              <span>Tirar Outra Foto</span>
+            </button>
+            <button type="button" id="btn-camera-confirm" class="btn-action-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Usar Esta Foto e Adaptar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container de Toasts de Notificação -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Filtros SVG para Simulação Realista de Daltonismo -->
+  <svg style="display: none;" aria-hidden="true">
+    <defs>
+      <filter id="filter-deuteranopia">
+        <feColorMatrix type="matrix" values="
+          0.625, 0.375, 0.000, 0, 0
+          0.700, 0.300, 0.000, 0, 0
+          0.000, 0.300, 0.700, 0, 0
+          0.000, 0.000, 0.000, 1, 0" />
+      </filter>
+      <filter id="filter-protanopia">
+        <feColorMatrix type="matrix" values="
+          0.567, 0.433, 0.000, 0, 0
+          0.558, 0.442, 0.000, 0, 0
+          0.000, 0.242, 0.758, 0, 0
+          0.000, 0.000, 0.000, 1, 0" />
+      </filter>
+      <filter id="filter-tritanopia">
+        <feColorMatrix type="matrix" values="
+          0.950, 0.050, 0.000, 0, 0
+          0.000, 0.433, 0.567, 0, 0
+          0.000, 0.475, 0.525, 0, 0
+          0.000, 0.000, 0.000, 1, 0" />
+      </filter>
+      <filter id="filter-acromatopsia">
+        <feColorMatrix type="matrix" values="
+          0.299, 0.587, 0.114, 0, 0
+          0.299, 0.587, 0.114, 0, 0
+          0.299, 0.587, 0.114, 0, 0
+          0.000, 0.000, 0.000, 1, 0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Scripts da Aplicação Web -->
+  <script src="js/data.js"></script>
+  <script src="js/gallery-manager.js"></script>
+  <script src="js/chart-adapter.js"></script>
+  <script src="js/chart-audio-describer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
